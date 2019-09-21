@@ -53,6 +53,13 @@ describe('Robot TDD', () => {
         robot.move
         expect(robot.position).to.eql({x:3, y:2})
     })
+
+    it('should get max_x from Board', () => {
+        expect(robot.max_x).to.eq(4)
+    })
+    it('should get max_y from Board', () => {
+        expect(robot.max_y).to.eq(4)
+    })
 })
 
 
@@ -81,5 +88,36 @@ describe('Robot integrational', () => {
         r2d2.move
         r2d2.move
         expect(r2d2.position).to.eql({x:4, y:4})
+    })
+    it('should not travel outside board grid', () => {
+        const r3d2 = new Robot({
+            x: 0, y: 0,
+            face: "north",
+        })
+        r3d2.move
+        expect(r3d2.position).to.eql({x:0, y:0})
+        r3d2.right
+        r3d2.move
+        expect(r3d2.position).to.eql({x:0, y:0})
+        r3d2.right
+        r3d2.move
+        r3d2.move
+        r3d2.move
+        r3d2.move
+        r3d2.move
+        r3d2.move
+        r3d2.move
+        r3d2.move
+        expect(r3d2.position).to.eql({x:0, y:4})
+        r3d2.right
+        r3d2.move
+        r3d2.move
+        r3d2.move
+        r3d2.move
+        r3d2.move
+        r3d2.move
+        r3d2.move
+        r3d2.move
+        expect(r3d2.position).to.eql({x:4, y:4})
     })
 })
