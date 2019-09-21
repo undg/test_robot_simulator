@@ -1,9 +1,10 @@
 #!/usr/bin/node
 const Board = require('./board.js')
+const {safe_position} = require('./helpers.js')
 
 module.exports = class robot {
-    constructor({x, y, face}) {
-        this.pos = {
+    constructor({x, y, face, table}) {
+        this.position = {
             x: !!x ? x : 0,
             y: !!y ? y : 0,
         }
@@ -16,15 +17,12 @@ module.exports = class robot {
         ]
 
         const board = new Board({
-            width: 5,
-            height: 5,
+            width: table.width,
+            height: table.height,
         })
 
         this.max_x = board.max_x
         this.max_y = board.max_y
-    }
-    get position() {
-        return this.pos
     }
     turn(direction) {
         const turn =  direction === "LEFT"  ? - 1
@@ -53,21 +51,20 @@ module.exports = class robot {
         x = this.move_on_x_axis(x)
         y = this.move_on_y_axis(y)
 
-        this.position.x = this.safe_position(x, this.max_x, this.position.x)
-        this.position.y = this.safe_position(y, this.max_y, this.position.y)
+        this.position.x = safe_position({pos: x, max_pos: this.max_x, last_pos: this.position.x})
+        this.position.y = safe_position({pos: y, max_pos: this.max_y, last_pos: this.position.y})
     }
 
-    safe_position = (pos, max_pos, last_pos) =>
-        (pos >= 0 && pos <= max_pos)
-            ? pos
-            : last_pos
-
-    move_on_y_axis = y =>   this.face === "SOUTH" ? y + 1
+    move_on_y_axis = y =>     this.face === "SOUTH" ? y + 1
                             : this.face === "NORTH" ? y - 1
                             : y
+
     move_on_x_axis = x =>     this.face === "EAST" ? x + 1
                             : this.face === "WEST" ? x - 1
                             : x
 
+    get report(){
+        return `${this.position.x},${this.position.y},${this.face}`
+    }
 
 }
