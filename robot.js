@@ -1,14 +1,14 @@
-#!/usr/bin/node
 const Board = require('./board.js')
 const {safe_position} = require('./helpers.js')
 
 module.exports = class robot {
     constructor({x, y, face, table}) {
         this.position = {
-            x: !!x ? x : 0,
-            y: !!y ? y : 0,
+            x: x,
+            y: y,
         }
-        this.face = face.toUpperCase()
+        this.face = face.toUpperCase().trim()
+
         this.face_directions = [
             "SOUTH",
             "EAST",
@@ -55,13 +55,26 @@ module.exports = class robot {
         this.position.y = safe_position({pos: y, max_pos: this.max_y, last_pos: this.position.y})
     }
 
-    move_on_y_axis = y =>     this.face === "SOUTH" ? y + 1
-                            : this.face === "NORTH" ? y - 1
-                            : y
 
-    move_on_x_axis = x =>     this.face === "EAST" ? x + 1
-                            : this.face === "WEST" ? x - 1
-                            : x
+    move_on_y_axis(pos) {
+        if(this.face === "SOUTH") {
+            pos++
+        }
+        if(this.face === "NORTH") {
+            pos--
+        }
+        return pos
+    }
+
+    move_on_x_axis(pos) {
+        if(this.face === "EAST") {
+            pos++
+        }
+        if(this.face === "WEST") {
+            pos--
+        }
+        return pos
+    }
 
     get report(){
         return `${this.position.x},${this.position.y},${this.face}`

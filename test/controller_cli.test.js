@@ -1,4 +1,3 @@
-console.log('\n\n\n\n')
 const { expect } = require('chai')
 const Controller = require('./../controller_cli.js')
 

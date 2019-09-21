@@ -1,4 +1,3 @@
-console.log('\n\n\n\n')
 const { expect } = require('chai')
 
 const Robot = require('./../robot.js')

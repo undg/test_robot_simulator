@@ -1,5 +1,5 @@
-const Controller = require('./controller_cli.js')
+#!/usr/bin/node
+const Controller_cli = require('./controller_cli.js')
 
-const controller = new Controller()
-
-controller.init()
+const CLI = new Controller_cli()
+CLI.init
