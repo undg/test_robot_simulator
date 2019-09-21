@@ -1,3 +1,21 @@
+## Usage
+
+To run app use
+
+    npm start
+
+or
+
+    ./index.js
+
+
+Runing tests:
+
+    npm run test:once
+    yarn test:o
+    npm test
+
+
 ## Toy Robot Simulator
 
 We use this test as an indication of the kind of code that a candidate would write on a day to day basis, so please take your time and submit representative code.

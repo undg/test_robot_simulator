@@ -6,7 +6,8 @@
   "scripts": {
     "test:once": "mocha",
     "test:o": "mocha",
-    "test": "mocha --watch -R nyan"
+    "test": "mocha --watch -R nyan",
+    "start": "node index.js"
   },
   "author": "undg",
   "license": "ISC",

@@ -3,7 +3,7 @@ const Controller = require('./../controller_cli.js')
 
 
 describe('Controller', () => {
-    const cli = new Controller()
+    const cli = new Controller(true)
     it('should be ok', () => {
         expect(cli).to.be.ok
     })
