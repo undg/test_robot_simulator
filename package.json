@@ -1,0 +1,15 @@
+{
+  "name": "robot_on_the_board",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --watch -R nyan"
+  },
+  "author": "undg",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0"
+  }
+}
