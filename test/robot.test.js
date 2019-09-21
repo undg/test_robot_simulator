@@ -1,0 +1,49 @@
+console.log('\n\n\n\n')
+const { expect } = require('chai')
+
+const Robot = require('./../robot.js')
+
+
+describe('Robot', () => {
+    const robot = new Robot({
+        x: 1,
+        y: 2,
+        face: "East",
+    })
+    it('should be ok', () => {
+        expect(robot).to.be.ok
+    })
+    it('should set initial position of robot ({x: 1, y: 2})', () => {
+        expect(robot.position).to.eql({x: 1, y: 2})
+    })
+    it('should set initial direction to "EAST"', () => {
+        expect(robot.face).to.eq("EAST")
+    })
+    it('should return new direction (east->south)', () => {
+        expect(robot.turn("LEFT")).to.eq("SOUTH")
+    })
+    it('should return new direction (east->north)', () => {
+        expect(robot.turn("RIGHT")).to.eq("NORTH")
+    })
+
+    it('should change direction (east->south->west... and so on)', () => {
+        robot.left
+        expect(robot.face).to.eq("SOUTH")
+        robot.left
+        expect(robot.face).to.eq("WEST")
+        robot.left
+        expect(robot.face).to.eq("NORTH")
+        robot.left
+        expect(robot.face).to.eq("EAST")
+    })
+    it('should change direction (east->south->west... and so on)', () => {
+        robot.right
+        expect(robot.face).to.eq("NORTH")
+        robot.right
+        expect(robot.face).to.eq("WEST")
+        robot.right
+        expect(robot.face).to.eq("SOUTH")
+        robot.right
+        expect(robot.face).to.eq("EAST")
+    })
+})
