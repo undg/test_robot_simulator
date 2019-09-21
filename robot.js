@@ -37,4 +37,18 @@ module.exports = class robot {
     get right() {
         this.face = this.turn("RIGHT")
     }
+
+    get move() {
+        let {x, y} = this.position
+        x =   this.face === "EAST" ? x + 1
+            : this.face === "WEST" ? x - 1
+            : x
+
+        y =   this.face === "SOUTH" ? y + 1
+            : this.face === "NORTH" ? y - 1
+            : y
+
+        this.position.x = x
+        this.position.y = y
+    }
 }

@@ -4,7 +4,7 @@ const { expect } = require('chai')
 const Robot = require('./../robot.js')
 
 
-describe('Robot', () => {
+describe('Robot TDD', () => {
     const robot = new Robot({
         x: 1,
         y: 2,
@@ -45,5 +45,41 @@ describe('Robot', () => {
         expect(robot.face).to.eq("SOUTH")
         robot.right
         expect(robot.face).to.eq("EAST")
+    })
+
+    it('should change position', () => {
+        robot.move
+        expect(robot.position).to.eql({x:2, y:2})
+        robot.move
+        expect(robot.position).to.eql({x:3, y:2})
+    })
+})
+
+
+
+describe('Robot integrational', () => {
+    it('should travel here and there', () => {
+        const r2d2 = new Robot({
+            x: 1, y: 2,
+            face: "East",
+        })
+        r2d2.right
+        expect(r2d2.face).to.eq("NORTH")
+        r2d2.move
+        expect(r2d2.position).to.eql({x:1, y:1})
+        r2d2.move
+        expect(r2d2.position).to.eql({x:1, y:0})
+        r2d2.left
+        expect(r2d2.face).to.eq("EAST")
+        r2d2.move
+        r2d2.move
+        r2d2.move
+        expect(r2d2.position).to.eql({x:4, y:0})
+        r2d2.left
+        r2d2.move
+        r2d2.move
+        r2d2.move
+        r2d2.move
+        expect(r2d2.position).to.eql({x:4, y:4})
     })
 })
