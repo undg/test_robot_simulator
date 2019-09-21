@@ -20,7 +20,7 @@ class Controller_cli {
                     const pos = cmd[1].split(',')
 
                     if( !(
-                        safe_position({pos: pos[0], max_pos: this.table.width,  last_pos: false})
+                           safe_position({pos: pos[0], max_pos: this.table.width,  last_pos: false})
                         && safe_position({pos: pos[1], max_pos: this.table.height, last_pos: false})
                     )) { throw "error" }
                     if( !safe_direction({direction: pos[2]})) { throw "error" }
@@ -36,10 +36,10 @@ class Controller_cli {
                 }
             }
 
-            if(cmd[0] === 'LEFT') { this.robot.left }
-            if(cmd[0] === 'RIGHT') { this.robot.right }
-            if(cmd[0] === 'MOVE') { this.robot.move }
-            if(cmd[0] === 'REPORT') { console.log(this.robot.report) }
+            if(cmd[0] === 'LEFT') { this.left }
+            if(cmd[0] === 'RIGHT') { this.right }
+            if(cmd[0] === 'MOVE') { this.move }
+            if(cmd[0] === 'REPORT') { this.report }
         });
     }
 
@@ -53,6 +53,27 @@ class Controller_cli {
                 height: this.table.height,
             },
         })
+        this.grid
+    }
+
+    get left() {
+        this.robot.left
+        this.grid
+    }
+    get right() {
+        this.robot.right
+        this.grid
+    }
+    get move() {
+        this.robot.move
+        this.grid
+    }
+    get report() {
+        console.log(this.robot.report.raw)
+    }
+    get grid() {
+        console.clear()
+        console.log(this.robot.report.grid)
     }
 }
 module.exports = Controller_cli

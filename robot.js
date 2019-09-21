@@ -4,8 +4,8 @@ const {safe_position} = require('./helpers.js')
 module.exports = class robot {
     constructor({x, y, face, table}) {
         this.position = {
-            x: x,
-            y: y,
+            x: +x,
+            y: +y,
         }
         this.face = face.toUpperCase().trim()
 
@@ -16,13 +16,14 @@ module.exports = class robot {
             "WEST",
         ]
 
-        const board = new Board({
+        this.board = new Board({
             width: table.width,
             height: table.height,
         })
 
-        this.max_x = board.max_x
-        this.max_y = board.max_y
+        this.max_x = this.board.max_x
+        this.max_y = this.board.max_y
+
     }
     turn(direction) {
         const turn =  direction === "LEFT"  ? - 1
@@ -77,7 +78,17 @@ module.exports = class robot {
     }
 
     get report(){
-        return `${this.position.x},${this.position.y},${this.face}`
+        const grid = this.board.display({
+            x: this.position.x,
+            y: this.position.y,
+            face: this.face,
+        })
+        const report = `${this.position.x},${this.position.y},${this.face}`
+
+        return {
+            grid: grid,
+            raw: report,
+        }
     }
 
 }

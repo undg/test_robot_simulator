@@ -7,10 +7,10 @@ describe('Controller', () => {
     it('should be ok', () => {
         expect(cli).to.be.ok
     })
-    it('should have init', () => {
-        expect(cli.place_robot).to.be.ok
-    })
     it('should have table', () => {
-        expect(cli.table).to.have.keys('width','height')
+        expect(cli).to.have.keys('robot','table')
+    })
+    it('should have place_robot', () => {
+        expect(cli.place_robot).to.be.ok
     })
 })

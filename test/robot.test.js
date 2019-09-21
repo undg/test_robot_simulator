@@ -5,13 +5,17 @@ const Robot = require('./../robot.js')
 
 describe('Robot TDD', () => {
     const robot = new Robot({
-        x: 1,
-        y: 2,
+        x: "1",
+        y: "2",
         face: "East",
         table: {width: 5, height: 5},
     })
     it('should be ok', () => {
         expect(robot).to.be.ok
+    })
+    it('should be an number', () => {
+        expect(robot.position.x).to.be.an('number')
+        expect(robot.position.y).to.be.an('number')
     })
     it('should set initial position of robot ({x: 1, y: 2})', () => {
         expect(robot.position).to.eql({x: 1, y: 2})
@@ -62,7 +66,7 @@ describe('Robot TDD', () => {
     })
 
     it('should report position', () => {
-        expect(robot.report).to.eq('3,2,EAST')
+        expect(robot.report.raw).to.eq('3,2,EAST')
     })
 })
 
@@ -102,15 +106,15 @@ describe('Robot integrational', () => {
         })
         r3d2.move
         expect(r3d2.position).to.eql({x:0, y:0})
-        expect(r3d2.report).to.eq('0,0,NORTH')
+        expect(r3d2.report.raw).to.eq('0,0,NORTH')
         r3d2.right
         r3d2.move
         expect(r3d2.position).to.eql({x:0, y:0})
-        expect(r3d2.report).to.eq('0,0,WEST')
+        expect(r3d2.report.raw).to.eq('0,0,WEST')
         r3d2.right
         r3d2.move
         r3d2.move
-        expect(r3d2.report).to.eq('0,2,SOUTH')
+        expect(r3d2.report.raw).to.eq('0,2,SOUTH')
         r3d2.move
         r3d2.move
         r3d2.move
@@ -118,7 +122,7 @@ describe('Robot integrational', () => {
         r3d2.move
         r3d2.move
         expect(r3d2.position).to.eql({x:0, y:4})
-        expect(r3d2.report).to.eq('0,4,SOUTH')
+        expect(r3d2.report.raw).to.eq('0,4,SOUTH')
         r3d2.right
         r3d2.move
         r3d2.move
@@ -129,6 +133,6 @@ describe('Robot integrational', () => {
         r3d2.move
         r3d2.move
         expect(r3d2.position).to.eql({x:4, y:4})
-        expect(r3d2.report).to.eq('4,4,EAST')
+        expect(r3d2.report.raw).to.eq('4,4,EAST')
     })
 })
