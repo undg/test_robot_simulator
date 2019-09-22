@@ -7,6 +7,24 @@ To run app use
 or
 
     ./index.js
+    
+You should see:
+
+    type HELP for all commands
+    | | | | | |
+    | | | | | |
+    | | |⬅| | |
+    | | | | | |
+    | | | | | |
+    
+    start with command:
+            PLACE X,Y,FACE
+
+                X: number 0-4
+                Y: number 0-4
+                FACE: SOUTH, EAST, NORTH, WEST
+            Other commands: LEFT, RIGHT, MOVE, REPORT, GRID, HELP
+
 
 
 Runing tests:
